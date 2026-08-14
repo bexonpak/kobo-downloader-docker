@@ -18,8 +18,10 @@ RUN python3 -m venv /venv && \
 # so that subsequent commands prefer the virtual environment's python
 ENV PATH="/venv/bin:$PATH"
 
+VOLUME ["/downloads"]
+
 # Expose ttyd's web terminal port
 EXPOSE 7681
 
 # Start ttyd, providing an interactive shell environment
-CMD ["ttyd", "-p", "7681", "sh"]
+CMD ["ttyd", "-p", "7681", "--writable", "sh"]
